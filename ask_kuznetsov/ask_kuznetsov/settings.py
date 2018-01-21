@@ -56,7 +56,7 @@ ROOT_URLCONF = 'ask_kuznetsov.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/alex/ask_kuznetsov/templates', '/home/alex/Project/ask_kuznetsov/questions/templates'],
+        'DIRS': ['/home/alex/AskKuznetsov/ask_kuznetsov/templates', '/home/alex/Project/ask_kuznetsov/questions/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
