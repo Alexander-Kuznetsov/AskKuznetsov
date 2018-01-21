@@ -1,0 +1,7 @@
+<h1> New Questions  </h1>	
+<!-- Сообщения -->
+{% block content %}
+    {% for article in articles %}
+        {% include "Modules/article.html" %}
+    {% endfor %}
+{% endblock %}
