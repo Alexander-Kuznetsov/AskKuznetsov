@@ -44,3 +44,4 @@ def pagination(request, html_page, objects, object_name, objects_count, *args, *
     kwargs['pagination_list'] = objects
 
     return render(request,html_page, kwargs)
+
