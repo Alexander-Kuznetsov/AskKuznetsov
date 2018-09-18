@@ -7,9 +7,34 @@ from ask_kuznetsov.models import Profile, Question, Answer, Tag
 
 
 class ArticleAddForm(forms.Form):
-    title = forms.CharField(max_length=255, min_length=5)
-    text = forms.CharField(label='Text')
-    tags = forms.CharField(label='Tags', required=False)
+    title = forms.CharField(
+        min_length=3,
+        max_length=60,
+        label='Title',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Input title here...'
+        })
+
+    )
+    text = forms.CharField(
+        min_length=3,
+        max_length=1000,
+        label='Text',
+        widget=forms.Textarea(attrs={
+            'class': 'form-control',
+            'placeholder': 'Input text here...',
+            'rows': '10'
+        })
+    )
+    tags = forms.CharField(
+        label='Tags',
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Input tags here...'
+        })
+    )
 
     def __init__(self, user=None, *args, **kwargs):
         self._user = user
@@ -20,7 +45,8 @@ class ArticleAddForm(forms.Form):
         article.title = self.cleaned_data['title']
         article.text = self.cleaned_data['text']
         article.created_at = datetime.datetime.now()
-        article.rating = 0
+        article.rating_like = 0
+        article.rating_dislike = 0
         article.author = Profile.objects.all()[1]
         article.save()
 
@@ -48,10 +74,52 @@ class AnswerAddForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    login = forms.CharField(max_length=20, min_length=3)
-    email = forms.CharField(max_length=255, min_length=3)
-    password = forms.CharField(max_length=20, min_length=4)
-    password_repeat = forms.CharField(max_length=20, min_length=4, label='Repeat')
+
+    login = forms.CharField(
+        min_length=3,
+        max_length=20,
+        label='Login:',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'SuperPupkin'
+        })
+    )
+
+    email = forms.CharField(min_length=3,
+        max_length=255,
+        label='Email:',
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'pupkin@mail.ru'
+        })
+    )
+    name = forms.CharField(
+        min_length=3,
+        max_length=20,
+        label='Name:',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Pupkin'
+        })
+    )
+    password = forms.CharField(
+        min_length=4,
+        max_length=20,
+        label='Password:',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': '***********'
+        })
+    )
+    password_repeat = forms.CharField(
+        min_length=4,
+        max_length=20,
+        label='Repeat password:',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': '***********'
+        })
+    )
 
     def clean_password_repeat(self):
         if self.cleaned_data['password'] != self.cleaned_data['password_repeat']:
@@ -65,10 +133,13 @@ class RegistrationForm(forms.Form):
 
 
 class SignInForm(forms.Form):
-    user_name = forms.CharField(label='Email')
-    password = forms.CharField(label='Password')
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
     _user = None
+
+    class Meta:
+        fields = ['username', 'password']
 
     def clean(self):
         try:

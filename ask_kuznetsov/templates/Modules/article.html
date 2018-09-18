@@ -7,14 +7,14 @@
     <div class="panel-body">
         <span>
 			<button type="button" class="btn btn-default" aria-label="Left Align">
-				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 5
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{article.rating_like}}
 			</button>			
 			<button type="button" class="btn btn-default" aria-label="Left Align">
-				<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 4
+				<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> {{article.rating_dislike}}
 			</button>
 		  </span>
         <span class="count-ansver">
-			<a>Answer (3)</a>
+			<a>Answer {{article.get_count_answers}}</a>
 		</span>
         <span class="tags-massage">
 			Tags:
