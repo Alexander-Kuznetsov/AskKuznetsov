@@ -41,8 +41,11 @@ def login_view_render(request, *args, **kwargs):
 
 def login_view(request, *args, **kwargs):
     if request.POST:
+        print('this post!')
         form = forms.SignInForm(request.POST)
+        print('signin!')
         if form.is_valid():
+            print('isvalid')
             auth.login(request, form.auth())
             return redirect('/')
     else:

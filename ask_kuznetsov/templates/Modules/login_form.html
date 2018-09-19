@@ -9,7 +9,7 @@
                     {{ field }}
                 </div>
                 {% for error in field.errors %}
-                    <span class="help-block col-sm-offset-4 col-sm-8">{{ field.errors }}</span>
+                    <span class="help-block col-sm-offset-4 col-sm-8">{{ error }}</span>
                 {% endfor %}
             </div>
         {% endfor %}
@@ -20,6 +20,6 @@
         </div>
     </form>
     <div class="col-xs-offset-2 col-xs-10">
-        <h5><a href="{%url 'signup' %}">create new account</a></h5>
+        <h5><a href="{% url 'signup' %}">create new account</a></h5>
     </div>
 </div>

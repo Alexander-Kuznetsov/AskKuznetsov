@@ -54,7 +54,15 @@ class ArticleAddForm(forms.Form):
 
 
 class AnswerAddForm(forms.Form):
-    text = forms.CharField(max_length=255, min_length=3)
+    text = forms.CharField(
+        min_length=3,
+        max_length=255,
+        widget=forms.Textarea(attrs={
+            'class': 'form-control',
+            'placeholder': 'Input text here...',
+            'rows': '6'
+        })
+    )
 
     def __init__(self, user=None, *args, **kwargs):
         self._user = user
@@ -64,9 +72,9 @@ class AnswerAddForm(forms.Form):
         answer = Answer()
         answer.text = self.cleaned_data['text']
         answer.created_at = datetime.datetime.now()
-        answer.rating = 0
+        answer.rating_like = 0
+        answer.rating_dislike = 0
         answer.author = Profile.objects.all()[1]
-
         answer.question = Question.objects.all()[1]
         answer.save()
 
@@ -74,7 +82,6 @@ class AnswerAddForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-
     login = forms.CharField(
         min_length=3,
         max_length=20,
@@ -85,7 +92,8 @@ class RegistrationForm(forms.Form):
         })
     )
 
-    email = forms.CharField(min_length=3,
+    email = forms.CharField(
+        min_length=3,
         max_length=255,
         label='Email:',
         widget=forms.EmailInput(attrs={
@@ -133,17 +141,26 @@ class RegistrationForm(forms.Form):
 
 
 class SignInForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    username = forms.CharField(
+        label='Username',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Username'
+        })
+    )
+    password = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Password'
+        })
+    )
 
     _user = None
 
-    class Meta:
-        fields = ['username', 'password']
-
     def clean(self):
         try:
-            self._user = auth.authenticate(username=self.cleaned_data['user_name'],
+            self._user = auth.authenticate(username=self.cleaned_data['username'],
                                            password=self.cleaned_data['password'])
         except:
             raise forms.ValidationError('Invalid login or password')
