@@ -18,8 +18,9 @@
 		</span>
         <span class="tags-massage">
 			Tags:
-			<a>Night</a>
-			<a>Creeps</a>
+			{% for tag in article.tags.all %}
+              <a> {{tag.title}} </a>
+            {% endfor %}
 		</span>
     </div>
 </div>

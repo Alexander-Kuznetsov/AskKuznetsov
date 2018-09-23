@@ -40,15 +40,34 @@ class ArticleAddForm(forms.Form):
         self._user = user
         forms.Form.__init__(self, *args, **kwargs)
 
+    def clean_tags(self):
+        tags_list = self.cleaned_data.get('tags', '').split(',')
+        if tags_list:
+            for sym in ['\\', ']', '[', '%']:
+                for tag in tags_list:
+                    if tag.find(sym) != -1:
+                        raise forms.ValidationError(u'Error symbol in tag')
+        return tags_list
+
     def save(self):
         article = Question()
         article.title = self.cleaned_data['title']
         article.text = self.cleaned_data['text']
+
+        tags_list = self.cleaned_data['tags']
+        if tags_list:
+            tags_list = [tag.replace(' ', '') for tag in tags_list]
+            tags_list = [tag.replace('-', '_') for tag in tags_list]
+
         article.created_at = datetime.datetime.now()
         article.rating_like = 0
         article.rating_dislike = 0
         article.author = Profile.objects.all()[1]
         article.save()
+
+        for tag in tags_list:
+            tag_obj = Tag.objects.get_or_create(tag)
+            article.tags.add(tag_obj)
 
         return article
 
@@ -68,14 +87,14 @@ class AnswerAddForm(forms.Form):
         self._user = user
         forms.Form.__init__(self, *args, **kwargs)
 
-    def save(self):
+    def save(self, article):
         answer = Answer()
         answer.text = self.cleaned_data['text']
         answer.created_at = datetime.datetime.now()
         answer.rating_like = 0
         answer.rating_dislike = 0
         answer.author = Profile.objects.all()[1]
-        answer.question = Question.objects.all()[1]
+        answer.question = article
         answer.save()
 
         return answer
@@ -169,3 +188,33 @@ class SignInForm(forms.Form):
         if not self._user:
             self.clean()
         return self._user
+
+class SettingsForm(forms.Form):
+    login = forms.CharField(
+        min_length=3,
+        max_length=20,
+        label='Login:',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'SuperPupkin'
+        })
+    )
+
+    email = forms.CharField(
+        min_length=3,
+        max_length=255,
+        label='Email:',
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'pupkin@mail.ru'
+        })
+    )
+    name = forms.CharField(
+        min_length=3,
+        max_length=20,
+        label='Name:',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Pupkin'
+        })
+    )

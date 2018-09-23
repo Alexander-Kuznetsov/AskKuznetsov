@@ -3,8 +3,9 @@
 
 {% block content %}
 <div class="col-md-8">
-    <h3><b>New Questions <a href="#"><u class="hotquest">Hot Questions</u></a></b></h3> 
+	<h3>New Questions <b><a href="{% url 'hot_index' %}"><u class="hotquest">Hot Questions</u></a></b></h3>
+	<h1> New Questions  </h1>	
 	{% include "Modules/article_list.html" %}
-	{% include "Modules/paginator.html" %}	            
+	{% include "Modules/paginator.html" %}
 </div>
 {% endblock %}

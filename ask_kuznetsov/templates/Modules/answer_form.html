@@ -16,8 +16,9 @@
         </span>
         <span class="tags-massage">
             Tags:
-            <a>Night</a>
-            <a>Creeps</a>
+           	{% for tag in article.tags.all %}
+              <a> {{tag.title}} </a>
+            {% endfor %}
         </span>
     </div>
     <hr>
@@ -44,6 +45,7 @@
             </div>
         </div>
     {% endfor %}
+    {% if user.is_authenticated %}
     <hr>
     <form method="post" action="{{ article.get_url }}">
         {% csrf_token %}
@@ -55,6 +57,9 @@
                 {% endfor %}
             </div>
         {% endfor %}
-        <button type="submit" class="btn btn-default btn-answer-write">Answer</button>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-default btn-answer-write">Answer</button>
+        </div>
     </form>
+    {% endif %}
 </div>

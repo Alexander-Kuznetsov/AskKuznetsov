@@ -27,11 +27,13 @@
 			                </div>
 			                <button type="submit" class="btn btn-default">Submit</button>
 			            </form>
+						{% if user.is_authenticated %}
 			            <div class="nav navbar-nav navbar-leftASK">
 							<a href="{% url 'ask' %}">
 								<button type="button" class="btn btn-success">ASK</button>
 							</a>
 			            </div>
+						{% endif %}
 
 			            {% if user.is_authenticated %}	
 			            <!-- Кпопка для авторизованных пользователей -->
