@@ -5,6 +5,9 @@ from django.db.models import Count, Sum, F
 from django.core.urlresolvers import reverse
 from django.db.models.functions import Coalesce
 import datetime
+from django import template
+
+register = template.Library()
 
 GOOD_RATING = 10
 
@@ -44,6 +47,13 @@ class TagManager(models.Manager):
 	def get_by_title(self, title):
 		print(self.get(title=title))
 		return self.get(title=title)
+
+	def get_count_iniq(self):
+		return self.values(
+			'title'
+		).annotate(
+			name_count=Count('title')
+		).order_by("-name_count")[:8]
 
 
 class Tag(models.Model):

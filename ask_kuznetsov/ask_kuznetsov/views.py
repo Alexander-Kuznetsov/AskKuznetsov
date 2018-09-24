@@ -11,7 +11,15 @@ from ask_kuznetsov.models import *
 
 def index_view(request, *args, **kwargs):
     articles = Question.objects.all()
+    kwargs['tags'] = Tag.objects.get_count_iniq()
     return pagination(request, 'index.html', articles, 'articles', 10, *args, **kwargs)
+
+
+def index_view(request, *args, **kwargs):
+    articles = Question.objects.all()
+    kwargs['tags'] = Tag.objects.get_count_iniq()
+    return pagination(request, 'index.html', articles, 'articles', 10, *args, **kwargs)
+
 
 
 def tag_john_view(request, *args, **kwargs):
@@ -19,8 +27,15 @@ def tag_john_view(request, *args, **kwargs):
     return pagination(request, 'tag.html', articles, 'articles', 10, *args, **kwargs)
 
 
+
 def hot_index_view(request, *args, **kwargs):
     articles = Question.objects.best_questions()
+    distinct = Tag.objects.values(
+        'title'
+    ).annotate(
+        name_count=Count('title')
+    )
+    print(distinct)
     return pagination(request, 'hot_index.html', articles, 'articles', 10, *args, **kwargs)
 
 
@@ -106,5 +121,25 @@ def pagination(request, html_page, objects, object_name, objects_count, *args, *
 
     kwargs[object_name] = objects
     kwargs['pagination_list'] = objects
+    print(kwargs)
 
     return render(request, html_page, kwargs)
+
+'''
+
+def pagination(request, objects, object_name, objects_count, *args, **kwargs):
+    paginator = Paginator(objects, objects_count)
+    page = request.GET.get('page')
+
+    try:
+        objects = paginator.page(page)
+    except PageNotAnInteger:
+        objects = paginator.page(1)
+    except EmptyPage:
+        objects = paginator.page(paginator.num_pages)
+
+    kwargs[object_name] = objects
+    kwargs['pagination_list'] = objects
+
+    return request, kwargs
+'''
