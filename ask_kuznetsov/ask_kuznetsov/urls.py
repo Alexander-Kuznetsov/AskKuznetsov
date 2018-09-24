@@ -1,7 +1,11 @@
 from django.contrib import admin
 from django.conf.urls import url, include
 import views
+from django.contrib.auth.decorators import login_required
+from .models import Question, Answer
+from .models import LikeDislike
 #from views import index_view
+from django.views.generic import TemplateView
   
 '''
 urlpatterns = [
@@ -18,6 +22,9 @@ urlpatterns = [
 ]'''
 
 urlpatterns = [
+    url(r'^article/(?P<pk>\d+)/like/$',
+        login_required(views.VotesView.as_view(model=Question, vote_type=LikeDislike.LIKE)),
+        name='article_like'),
     url(r'^$', views.index_view, name='index'),
     url(r'^index', views.index_view, name='index'),
     #rl(r'^tag/kuznetsov/', 'ask_buevich.views.tag_john_view', name='tag_john'),
@@ -30,4 +37,5 @@ urlpatterns = [
     url(r'^settings', views.settings_view, name='settings'),
     url(r'^hot_index', views.hot_index_view, name='hot_index'),
     url(r'^admin/', admin.site.urls),
+
 ]

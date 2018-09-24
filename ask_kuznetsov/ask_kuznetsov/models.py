@@ -7,6 +7,10 @@ from django.db.models.functions import Coalesce
 import datetime
 from django import template
 
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericRelation
+
 register = template.Library()
 
 GOOD_RATING = 10
@@ -80,6 +84,46 @@ class QuestionManager(models.Manager):
         return self
 
 
+class LikeDislikeManager(models.Manager):
+	use_for_related_fields = True
+
+	def likes(self):
+		return self.get_queryset().filter(vote__gt=0)
+
+
+	def dislikes(self):
+		return self.get_queryset().filter(vote__lt=0)
+
+
+	def sum_rating(self):
+		return self.get_queryset().aggregate(Sum('vote')).get('vote__sum') or 0
+
+	def question(self):
+		return self.get_queryset().filter(content_type__model='question').order_by('-articles__pub_date')
+
+	def answer(self):
+		return self.get_queryset().filter(content_type__model='answer').order_by('-comments__pub_date')
+
+
+class LikeDislike(models.Model):
+	LIKE = 1
+	DISLIKE = -1
+
+	VOTES = (
+		(DISLIKE, 'dislike'),
+		(LIKE, 'like')
+	)
+
+	vote = models.SmallIntegerField(verbose_name=("Vote"), choices=VOTES)
+	user = models.ForeignKey(User, verbose_name=("Author"))
+
+	content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+	object_id = models.PositiveIntegerField()
+	content_object = GenericForeignKey()
+
+	objects = LikeDislikeManager()
+
+
 class Question(models.Model):
 	title = models.CharField(max_length=60)
 	text = models.TextField()
@@ -87,6 +131,7 @@ class Question(models.Model):
 	rating_like = models.IntegerField(default=0)
 	rating_dislike = models.IntegerField(default=0)
 	created_at = models.DateTimeField(default=timezone.now)
+	votes = GenericRelation(LikeDislike, related_query_name='question')
 	tags = models.ManyToManyField(Tag)
 	objects = QuestionManager()
 
@@ -117,6 +162,7 @@ class Answer(models.Model):
 	question = models.ForeignKey(Question)
 	rating_like = models.IntegerField(default=0)
 	rating_dislike = models.IntegerField(default=0)
+	votes = GenericRelation(LikeDislike, related_query_name='answer')
 
 	def get_url(self):
 		return self.question.get_url()
@@ -125,20 +171,37 @@ class Answer(models.Model):
 		return u'{0} - {1}'.format(self.id, self.text)
 
 
-class LikesQuestion(models.Model):
+
+
+
+'''
+class LikeDislikeManager(models.Manager):
+	def has_question(self, question):
+		return self.filter(question=question)
+
+	def sum_for_question(self, question):
+		res = self.has_question(question).aggregate(sum=Sum('rating_like'))['sum']
+		return res if res else 0
+
+	def add_or_update(self, owner, question, value):
+		obj, new = self.update_or_create(
+			author=owner,
+			question=question,
+			defaults={'rating_like': value}
+		)
+		question.rating_like = self.sum_for_question(question)
+		question.save()
+		return new
+
+
+class LikeDislike(models.Model):
+	LIKE = 1
+	DISLIKE = 1
+
 	rating_like = models.IntegerField(default=0)
 	rating_dislike = models.IntegerField(default=0)
 	question = models.ForeignKey(Question)
 	author = models.ForeignKey(Profile)
 
-	def get_rating(self):
-		pass
-
-
-
-class LikesAnswer(models.Model):
-	rating_like = models.IntegerField(default=0)
-	rating_dislike = models.IntegerField(default=0)
-	question = models.ForeignKey(Question)
-	answer = models.ForeignKey(Answer)
-	author = models.ForeignKey(Profile)
+	object = LikeDislikeManager()
+'''
