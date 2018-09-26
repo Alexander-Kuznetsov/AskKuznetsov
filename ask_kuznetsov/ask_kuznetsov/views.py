@@ -14,22 +14,45 @@ from django.utils.decorators import method_decorator
 from . import forms
 from ask_kuznetsov.models import *
 
+from django.db.models import Count, Sum, F
+
 
 def index_view(request, *args, **kwargs):
     articles = Question.objects.all()
+    top_people = LikeDislike.objects.likes().values('user_id').annotate(count=Count('user_id')).order_by('count')
+
+    kwargs['top_people'] = [User.objects.get(id=top_man['user_id']) for top_man in top_people]
     kwargs['tags'] = Tag.objects.get_count_iniq()
+    #aa = LikeDislike.objects.values('object_id').annotate(count=Count('object_id')).order_by('count')
+    #likes = LikeDislike.objects.likes().values('object_id').filter(object_id=1).count()
+    #print(likes)
+    #dislikes = LikeDislike.objects.dislikes().values('object_id').annotate(count=Count('object_id'))
+
+    #qq = LikeDislike.objects.sum_rating().ge
+    #print(qq)
+    #articles = articles.filter().values()
+    #for article in articles:
+    #    article['rating'] = Question.objects.get(id=article['id']).get_count_likes() - Question.objects.get(id=article['id']).get_count_dislikes()
+
+    #    for like in likes:
+    #        article['rating_like'] = like['count'] if article['id'] == like['object_id'] else 0
+    #    for dislike in dislikes:
+    #        article['rating_dislike'] = dislike['count'] if article['id'] == dislike['object_id'] else 0
+
+
     return pagination(request, 'index.html', articles, 'articles', 10, *args, **kwargs)
 
 
 def hot_index_view(request, *args, **kwargs):
     articles = Question.objects.all()
     kwargs['tags'] = Tag.objects.get_count_iniq()
+
     return pagination(request, 'index.html', articles, 'articles', 10, *args, **kwargs)
 
 
-def tag_john_view(request, *args, **kwargs):
-    articles = []
-    return pagination(request, 'tag.html', articles, 'articles', 10, *args, **kwargs)
+#def tag_john_view(request, *args, **kwargs):
+#    articles = []
+#    return pagination(request, 'tag.html', articles, 'articles', 10, *args, **kwargs)
 
 '''
 
@@ -127,7 +150,7 @@ def pagination(request, html_page, objects, object_name, objects_count, *args, *
 
     kwargs[object_name] = objects
     kwargs['pagination_list'] = objects
-    print(kwargs)
+    #print(kwargs)
 
     return render(request, html_page, kwargs)
 

@@ -43,6 +43,10 @@ function like()
  
     return false;
 }
+
+$(document).ready(function() {
+   // put Ajax here.
+});
  
 function dislike()
 {
@@ -53,7 +57,7 @@ function dislike()
     var like = dislike.prev();
  
     $.ajax({
-        url : 'api' + type +"/" + pk + "/" + action + "/",
+        url : type +"/" + pk + "/" + action + "/",
         type : 'POST',
         data : { 'obj' : pk },
  
@@ -71,5 +75,4 @@ $(function() {
     $('[data-action="like"]').click(like);
     $('[data-action="dislike"]').click(dislike);
 });
-
 

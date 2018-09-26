@@ -49,7 +49,7 @@ class ArticleAddForm(forms.Form):
                         raise forms.ValidationError(u'Error symbol in tag')
         return tags_list
 
-    def save(self):
+    def save(self, user):
         article = Question()
         article.title = self.cleaned_data['title']
         article.text = self.cleaned_data['text']
@@ -62,7 +62,7 @@ class ArticleAddForm(forms.Form):
         article.created_at = datetime.datetime.now()
         article.rating_like = 0
         article.rating_dislike = 0
-        article.author = Profile.objects.all()[1]
+        article.author = user
         article.save()
 
         for tag in tags_list:

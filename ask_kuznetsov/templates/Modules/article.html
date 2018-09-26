@@ -12,19 +12,23 @@
 			</button>
 			</a>-->
 
-			<ul>
+			<!--<ul>
 				<li data-id="{{ article.id }}" data-type="article" data-action="like" title="like">
 					<span class="glyphicon glyphicon-thumbs-up"></span>
 					<span data-count="like">{{ like_obj.votes.rating_like.count }}</span>
-					{% csrf_token %}
 				</li>
-				<li data-id="{{ like_obj.id }}" data-type="article" data-action="dislike" title="dislike">
+				<li data-id="{{ article.id }}" data-type="article" data-action="dislike" title="dislike">
 					<span class="glyphicon glyphicon-thumbs-down"></span>
 					<span data-count="dislike">{{ like_obj.votes.dislikes.count }}</span>
 				</li>
-			</ul>
-			<button type="button" class="btn btn-default" aria-label="Left Align">
-				<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> {{article.rating_dislike}}
+			</ul>-->
+			<button data-id="{{ article.id }}" data-type="article" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+				<span data-count="like">{{ article.get_count_likes }}</span>
+			</button>
+			<button data-id="{{ article.id }}" data-type="article" data-action="dislike" title="dislike" type="button" class="btn btn-default" aria-label="Left Align">
+				<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+				<span data-count="dislike">{{ article.get_count_dislikes }}</span>
 			</button>
 		  </span>
         <span class="count-ansver">

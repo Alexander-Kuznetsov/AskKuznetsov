@@ -13,7 +13,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 
 register = template.Library()
 
-GOOD_RATING = 10
+GOOD_RATING = 1
 
 
 class Profile(models.Model):
@@ -35,21 +35,23 @@ class QuestionManager(models.Manager):
 		return self.order_by('-created_at')
 
 
+
+
 class TagManager(models.Manager):
 	def get_or_create(self, title):
 		print(title)
 		try:
 			tag = self.get_by_title(title)
 		except:
-			print('##################################################')
-			print(title)
-			print('##################################################')
+			#print('##################################################')
+			#print(title)
+			#print('##################################################')
 			tag = self.create(title=title)
 		return tag
 
 	# searches using title
 	def get_by_title(self, title):
-		print(self.get(title=title))
+		#print(self.get(title=title))
 		return self.get(title=title)
 
 	def get_count_iniq(self):
@@ -68,7 +70,7 @@ class Tag(models.Model):
 
 	objects = TagManager()
 
-
+'''
 class QuestionManager(models.Manager):
     qs = None
 
@@ -82,7 +84,7 @@ class QuestionManager(models.Manager):
     def add_tags(self):
         self.qs.prefetch_related('tags')
         return self
-
+'''
 
 class LikeDislikeManager(models.Manager):
 	use_for_related_fields = True
@@ -90,10 +92,8 @@ class LikeDislikeManager(models.Manager):
 	def likes(self):
 		return self.get_queryset().filter(vote__gt=0)
 
-
 	def dislikes(self):
 		return self.get_queryset().filter(vote__lt=0)
-
 
 	def sum_rating(self):
 		return self.get_queryset().aggregate(Sum('vote')).get('vote__sum') or 0
@@ -153,6 +153,11 @@ class Question(models.Model):
 	def get_rating(self):
 		return self.rating_like - self.rating_dislike
 
+	def get_count_likes(self):
+		return LikeDislike.objects.likes().values('object_id').filter(object_id=self.id).count()
+
+	def get_count_dislikes(self):
+		return LikeDislike.objects.dislikes().values('object_id').filter(object_id=self.id).count()
 
 
 class Answer(models.Model):
