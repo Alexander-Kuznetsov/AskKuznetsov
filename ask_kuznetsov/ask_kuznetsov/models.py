@@ -34,6 +34,22 @@ class QuestionManager(models.Manager):
 	def new_questions(self):
 		return self.order_by('-created_at')
 
+	def hot_questions(self):
+		likes = LikeDislike.objects\
+			.likes().values('object_id')\
+			.annotate(count=Count('object_id'))\
+			.filter(count__gte=GOOD_RATING)\
+			.order_by('-count')
+		ids = [like['object_id'] for like in likes]
+		return self.all().filter(id__in=ids)
+
+	'''
+	def get_queryset(self):
+		id_string = self.request.GET.get('id')
+		if id_string is not None:
+			ids = [int(id) for id in id_string.split(',')]
+			return Vendor.objects.filter(id__in=ids)
+	'''
 
 
 
