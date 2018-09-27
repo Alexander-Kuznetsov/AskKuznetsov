@@ -76,7 +76,7 @@
 		                <h1>Popular Tags</h1>
 		                <ul class="container-fluid tags tager">
 							{% for tag in tags %}
-								<li class="tags-list"><a href="#">{{ tag.title }}</a></li>
+								<li class="tags-list"><a href="{% url 'tags' %}">{{ tag.title }}</a></li>
 							{% endfor %}
 				        </ul>
 		                <h1>Best members</h1>

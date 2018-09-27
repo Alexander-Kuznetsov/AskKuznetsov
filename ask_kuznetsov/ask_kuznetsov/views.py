@@ -17,12 +17,17 @@ from ask_kuznetsov.models import *
 from django.db.models import Count, Sum, F
 
 
+
 def index_view(request, *args, **kwargs):
     articles = Question.objects.all()
     kwargs['tags'] = Tag.objects.get_count_iniq()
     kwargs['top_people'] = LikeDislike.objects.get_top_people()
     return pagination(request, 'index.html', articles, 'articles', 10, *args, **kwargs)
 
+
+def tags_view(request, *args, **kwargs):
+    print(request.GET)
+    return redirect('/')
 
 def hot_index_view(request, *args, **kwargs):
     articles = Question.objects.hot_questions()

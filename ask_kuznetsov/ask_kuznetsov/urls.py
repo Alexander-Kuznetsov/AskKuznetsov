@@ -27,6 +27,6 @@ urlpatterns = [
     url(r'^settings', views.settings_view, name='settings'),
     url(r'^hot_index', views.hot_index_view, name='hot_index'),
     url(r'^search/$', views.search_view, name='search'),
+    url(r'^tags/$', views.tags_view, name='tags'),
     url(r'^admin/', admin.site.urls),
-
 ]
