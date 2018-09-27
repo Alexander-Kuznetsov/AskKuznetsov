@@ -19,12 +19,12 @@
 			            </a>
 			        </div>
 			        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			            
 			            <!-- Поиск -->
-			            <form class="navbar-form navbar-left" role="search">
-			                <div class="form-group">
-			                    <input type="text" class="form-control" placeholder="Search">
+			            <form method="get" action="{% url 'search' %}" class="navbar-form navbar-left"">
+							<div class="form-group">
+			                    <input type="text" class="form-control" placeholder="Search" name="search_word">
 			                </div>
+
 			                <button type="submit" class="btn btn-default">Submit</button>
 			            </form>
 						{% if user.is_authenticated %}
@@ -74,18 +74,18 @@
 		        <aside class="col-md-4">
 		            <div class="popular">
 		                <h1>Popular Tags</h1>
-		                <ul class="container-fluid tags">
+		                <ul class="container-fluid tags tager">
 							{% for tag in tags %}
 								<li class="tags-list"><a href="#">{{ tag.title }}</a></li>
 							{% endfor %}
 				        </ul>
 		                <h1>Best members</h1>
 						<ul class="member-list">
-
+							{% for top_man in top_people %}
+								<li><a href="#">{{ top_man.username }}</a></li>
+							{% endfor %}
 			            </ul>
-						{% for top_man in top_people %}
-							<li class="tags-list"><a href="#">{{ top_man.username }}</a></li>
-						{% endfor %}
+
 		            </div>
 		        </aside>
 		    </div>

@@ -6,22 +6,6 @@
 	</div>
     <div class="panel-body">
         <span>
-			<!--
-			<button type="button" class="btn btn-default" aria-label="Left Align">
-				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{article.rating_like}}
-			</button>
-			</a>-->
-
-			<!--<ul>
-				<li data-id="{{ article.id }}" data-type="article" data-action="like" title="like">
-					<span class="glyphicon glyphicon-thumbs-up"></span>
-					<span data-count="like">{{ like_obj.votes.rating_like.count }}</span>
-				</li>
-				<li data-id="{{ article.id }}" data-type="article" data-action="dislike" title="dislike">
-					<span class="glyphicon glyphicon-thumbs-down"></span>
-					<span data-count="dislike">{{ like_obj.votes.dislikes.count }}</span>
-				</li>
-			</ul>-->
 			<button data-id="{{ article.id }}" data-type="article" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
 				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 				<span data-count="like">{{ article.get_count_likes }}</span>

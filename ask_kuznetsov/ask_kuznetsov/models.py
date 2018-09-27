@@ -43,14 +43,12 @@ class QuestionManager(models.Manager):
 		ids = [like['object_id'] for like in likes]
 		return self.all().filter(id__in=ids)
 
-	'''
-	def get_queryset(self):
-		id_string = self.request.GET.get('id')
-		if id_string is not None:
-			ids = [int(id) for id in id_string.split(',')]
-			return Vendor.objects.filter(id__in=ids)
-	'''
-
+	def search_word(self, word):
+		try:
+			#return self.get(title__icontains=word)
+			return self.filter(title=word)#.load_all()
+		except:
+			return None
 
 
 class TagManager(models.Manager):
@@ -119,6 +117,10 @@ class LikeDislikeManager(models.Manager):
 
 	def answer(self):
 		return self.get_queryset().filter(content_type__model='answer').order_by('-comments__pub_date')
+
+	def get_top_people(self):
+		top_people = self.likes().values('user_id').annotate(count=Count('user_id')).order_by('-count')
+		return [User.objects.get(id=top_man['user_id']) for top_man in top_people]
 
 
 class LikeDislike(models.Model):

@@ -19,41 +19,44 @@ from django.db.models import Count, Sum, F
 
 def index_view(request, *args, **kwargs):
     articles = Question.objects.all()
-    top_people = LikeDislike.objects.likes().values('user_id').annotate(count=Count('user_id')).order_by('-count')
-    kwargs['top_people'] = [User.objects.get(id=top_man['user_id']) for top_man in top_people]
     kwargs['tags'] = Tag.objects.get_count_iniq()
-
+    kwargs['top_people'] = LikeDislike.objects.get_top_people()
     return pagination(request, 'index.html', articles, 'articles', 10, *args, **kwargs)
 
 
 def hot_index_view(request, *args, **kwargs):
     articles = Question.objects.hot_questions()
     kwargs['tags'] = Tag.objects.get_count_iniq()
-    top_people = LikeDislike.objects.likes().values('user_id').annotate(count=Count('user_id')).order_by('-count')
-    kwargs['top_people'] = [User.objects.get(id=top_man['user_id']) for top_man in top_people]
-
+    kwargs['top_people'] = LikeDislike.objects.get_top_people()
     return pagination(request, 'hot_index.html', articles, 'articles', 10, *args, **kwargs)
 
 
+def search_view(request, *args, **kwargs):
+    if request.method == 'GET':
+        form = forms.SearchForm(request.GET)
+        if form.is_valid():
+            word = form.cleaned_data['search_word']
+            articles = Question.objects.search_word(word)
+            if articles:
+                kwargs['search_word'] = {'word': word, 'count': articles.count()}
+                kwargs['tags'] = Tag.objects.get_count_iniq()
+                kwargs['top_people'] = LikeDislike.objects.get_top_people()
+
+                return pagination(request, 'search.html', articles, 'articles', 10, *args, **kwargs)
+    #else:
+    #    form = forms.SearchForm()
+
+    return redirect('/')
+    #return pagination(request, 'search.html', articles, 'articles', 10, *args, **kwargs)
 #def tag_john_view(request, *args, **kwargs):
 #    articles = []
 #    return pagination(request, 'tag.html', articles, 'articles', 10, *args, **kwargs)
 
-'''
-
-def hot_index_view(request, *args, **kwargs):
-    articles = Question.objects.best_questions()
-    distinct = Tag.objects.values(
-        'title'
-    ).annotate(
-        name_count=Count('title')
-    )
-    print(distinct)
-    return pagination(request, 'hot_index.html', articles, 'articles', 10, *args, **kwargs)
-'''
 
 def answer_view(request, article_id, *args, **kwargs):
     article = Question.objects.get(id=article_id)
+    kwargs['tags'] = Tag.objects.get_count_iniq()
+    kwargs['top_people'] = LikeDislike.objects.get_top_people()
     if request.POST:
         form = forms.AnswerAddForm(request.user, request.POST)
         if form.is_valid():
@@ -74,12 +77,11 @@ def login_view_render(request, *args, **kwargs):
 
 
 def login_view(request, *args, **kwargs):
+    kwargs['tags'] = Tag.objects.get_count_iniq()
+    kwargs['top_people'] = LikeDislike.objects.get_top_people()
     if request.POST:
-        print('this post!')
         form = forms.SignInForm(request.POST)
-        print('signin!')
         if form.is_valid():
-            print('isvalid')
             auth.login(request, form.auth())
             return redirect('/')
     else:
@@ -92,6 +94,8 @@ def signup_view_render(request, *args, **kwargs):
 
 
 def signup_view(request, *args, **kwargs):
+    kwargs['tags'] = Tag.objects.get_count_iniq()
+    kwargs['top_people'] = LikeDislike.objects.get_top_people()
     if request.POST:
         form = forms.RegistrationForm(request.POST)
         if form.is_valid():
@@ -108,6 +112,8 @@ def ask_view_render(request, *args, **kwargs):
 
 @login_required
 def ask_view(request, *args, **kwargs):
+    kwargs['tags'] = Tag.objects.get_count_iniq()
+    kwargs['top_people'] = LikeDislike.objects.get_top_people()
     if request.POST:
         form = forms.ArticleAddForm(request.user, request.POST)
         if form.is_valid():
@@ -119,6 +125,8 @@ def ask_view(request, *args, **kwargs):
 
 @login_required
 def settings_view(request, *args, **kwargs):
+    kwargs['tags'] = Tag.objects.get_count_iniq()
+    kwargs['top_people'] = LikeDislike.objects.get_top_people()
     return render(request, 'settings.html', kwargs)
 
 

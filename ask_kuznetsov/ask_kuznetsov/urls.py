@@ -6,20 +6,7 @@ from .models import Question, Answer
 from .models import LikeDislike
 #from views import index_view
 from django.views.generic import TemplateView
-  
-'''
-urlpatterns = [
-    url(r'question/', include('questions.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', index_view, name='index'),
-    url(r'^index', index_view, name='index'),
-    url(r'^signup', signup_view, name='singup'),
-    url(r'^ask', ask_view, name='ask'),
-    url(r'^answer', answer_view, name='answer'),
-    url(r'^login', login_view, name='login'),
-    url(r'^settings', settings_view, name='settings'),
-    url(r'^tag', tag_view, name='tag')
-]'''
+
 
 urlpatterns = [
     url(r'^article/(?P<pk>\d+)/like/$',
@@ -39,6 +26,7 @@ urlpatterns = [
     url(r'^ask', views.ask_view, name='ask'),
     url(r'^settings', views.settings_view, name='settings'),
     url(r'^hot_index', views.hot_index_view, name='hot_index'),
+    url(r'^search/$', views.search_view, name='search'),
     url(r'^admin/', admin.site.urls),
 
 ]

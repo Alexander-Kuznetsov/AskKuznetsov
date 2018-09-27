@@ -6,6 +6,22 @@ from django.contrib.auth.models import User
 from ask_kuznetsov.models import Profile, Question, Answer, Tag
 
 
+class SearchForm(forms.Form):
+    search_word = forms.CharField(
+        min_length=2,
+        max_length=20,
+        label="Search",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Search'
+        })
+    )
+
+    #def save(self):
+    #    return self.cleaned_data['search_word']
+
+
+
 class ArticleAddForm(forms.Form):
     title = forms.CharField(
         min_length=3,
