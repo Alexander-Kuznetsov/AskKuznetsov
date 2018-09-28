@@ -7,14 +7,29 @@ from .models import LikeDislike
 #from views import index_view
 from django.views.generic import TemplateView
 
+'''url(r'^question(\d+)/article/(?P<pk>\d+)/like/$',
+        login_required(views.VotesView.as_view(model=Question, vote_type=LikeDislike.LIKE)),
+        name='article_like'),
+    url(r'^question(\d+)/article/(?P<pk>\d+)/dislike/$',
+        login_required(views.VotesView.as_view(model=Question, vote_type=LikeDislike.DISLIKE)),
+        name='article_dislike'),
+'''
 
 urlpatterns = [
     url(r'^article/(?P<pk>\d+)/like/$',
         login_required(views.VotesView.as_view(model=Question, vote_type=LikeDislike.LIKE)),
         name='article_like'),
     url(r'^article/(?P<pk>\d+)/dislike/$',
-            login_required(views.VotesView.as_view(model=Question, vote_type=LikeDislike.DISLIKE)),
-            name='article_dislike'),
+        login_required(views.VotesView.as_view(model=Question, vote_type=LikeDislike.DISLIKE)),
+        name='article_dislike'),
+
+
+    url(r'^question(\d+)/answer/(?P<pk>\d+)/like/$',
+        login_required(views.VotesView.as_view(model=Answer, vote_type=LikeDislike.LIKE)),
+        name='answer_like'),
+    url(r'^question(\d+)/answer/(?P<pk>\d+)/dislike/$',
+        login_required(views.VotesView.as_view(model=Answer, vote_type=LikeDislike.DISLIKE)),
+        name='answer_dislike'),
     url(r'^$', views.index_view, name='index'),
     url(r'^index', views.index_view, name='index'),
     #rl(r'^tag/kuznetsov/', 'ask_buevich.views.tag_john_view', name='tag_john'),

@@ -2,8 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-{% load static %}
-
+	{% load static %}
 	<title>index</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -20,7 +19,7 @@
 			        </div>
 			        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			            <!-- Поиск -->
-			            <form method="get" action="{% url 'search' %}" class="navbar-form navbar-left"">
+			            <form method="get" action="{% url 'search' %}" class="navbar-form navbar-left">
 							<div class="form-group">
 			                    <input type="text" class="form-control" placeholder="Search" name="search_word">
 			                </div>
@@ -85,10 +84,10 @@
 								<li><a href="#">{{ top_man.username }}</a></li>
 							{% endfor %}
 			            </ul>
-
 		            </div>
 		        </aside>
 		    </div>
+			</div>
 		</main>
 	</div>
 	<footer>
@@ -97,5 +96,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="/static/js/like_dislike.js"></script>
 </body>
 </html>

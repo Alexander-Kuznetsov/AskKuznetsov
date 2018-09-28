@@ -7,17 +7,19 @@
     </div>
     <div class="panel-body">
         <span class="toRight-like-dislike-post-answer">
-            <button type="button" class="btn btn-default" aria-label="Left Align">
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ article.rating_like }}
-            </button>           
-            <button type="button" class="btn btn-default" aria-label="Left Align">
-                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> {{ article.rating_dislike }}
+            <button data-id="{{ article.id }}" data-type="article" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                <span data-count="like">{{ article.get_count_likes }}</span>
+            </button>
+            <button data-id="{{ article.id }}" data-type="article" data-action="dislike" title="dislike" type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                <span data-count="dislike">{{ article.get_count_dislikes }}</span>
             </button>
         </span>
         <span class="tags-massage">
             Tags:
            	{% for tag in article.tags.all %}
-              <a> {{tag.title}} </a>
+                <a> {{ tag.title }} </a>
             {% endfor %}
         </span>
     </div>
@@ -30,11 +32,13 @@
             </div>
             <div class="panel-body">
                 <span>
-                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <button data-id="{{ answer.id }}" data-type="answer" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
                         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                        <span data-count="like">{{ answer.get_count_likes }}</span>
                     </button>
-                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <button data-id="{{ answer.id }}" data-type="answer" data-action="dislike" title="dislike" type="button" class="btn btn-default" aria-label="Left Align">
                         <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                        <span data-count="dislike">{{ answer.get_count_dislikes }}</span>
                     </button>
                 </span>
                 <span class="checkbox box position-checkbox">
@@ -45,21 +49,22 @@
             </div>
         </div>
     {% endfor %}
+    {% include "Modules/paginator.html" %}
     {% if user.is_authenticated %}
-    <hr>
-    <form method="post" action="{{ article.get_url }}">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group">
-                {{ field }}
-                {% for error in field.errors %}
-                    <span class="help-block col-sm-offset-4 col-sm-8">{{ error }}</span>
-                {% endfor %}
+        <hr>
+        <form method="post" action="{{ article.get_url }}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <span class="help-block col-sm-offset-4 col-sm-8">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-default btn-answer-write">Answer</button>
             </div>
-        {% endfor %}
-        <div class="form-actions">
-            <button type="submit" class="btn btn-default btn-answer-write">Answer</button>
-        </div>
-    </form>
+        </form>
     {% endif %}
 </div>

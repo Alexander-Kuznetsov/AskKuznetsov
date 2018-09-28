@@ -193,6 +193,13 @@ class Answer(models.Model):
 	def __unicode__(self):
 		return u'{0} - {1}'.format(self.id, self.text)
 
+	def get_count_likes(self):
+		return LikeDislike.objects.likes().values('object_id').filter(object_id=self.id).count()
+
+	def get_count_dislikes(self):
+		return LikeDislike.objects.dislikes().values('object_id').filter(object_id=self.id).count()
+
+
 
 
 
