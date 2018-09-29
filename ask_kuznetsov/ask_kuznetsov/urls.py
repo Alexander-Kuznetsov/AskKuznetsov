@@ -32,7 +32,6 @@ urlpatterns = [
         name='answer_dislike'),
     url(r'^$', views.index_view, name='index'),
     url(r'^index', views.index_view, name='index'),
-    #rl(r'^tag/kuznetsov/', 'ask_buevich.views.tag_john_view', name='tag_john'),
     url(r'^question(?P<article_id>\d+)/', views.answer_view, name='answer'),
     url(r'^login', views.login_view, name='login'),
     url(r'^signup', views.signup_view, name='signup'),
@@ -45,3 +44,6 @@ urlpatterns = [
     url(r'^tags/$', views.tags_view, name='tags'),
     url(r'^admin/', admin.site.urls),
 ]
+
+handler404 = views.e_handler404
+handler500 = views.e_handler500

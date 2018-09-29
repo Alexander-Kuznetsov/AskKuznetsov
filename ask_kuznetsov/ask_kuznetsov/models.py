@@ -53,13 +53,9 @@ class QuestionManager(models.Manager):
 
 class TagManager(models.Manager):
 	def get_or_create(self, title):
-		print(title)
 		try:
 			tag = self.get_by_title(title)
 		except:
-			#print('##################################################')
-			#print(title)
-			#print('##################################################')
 			tag = self.create(title=title)
 		return tag
 

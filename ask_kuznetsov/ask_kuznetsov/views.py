@@ -10,6 +10,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.template import RequestContext
 
 from . import forms
 from ask_kuznetsov.models import *
@@ -52,20 +53,17 @@ def search_view(request, *args, **kwargs):
     #    form = forms.SearchForm()
 
     return redirect('/')
-    #return pagination(request, 'search.html', articles, 'articles', 10, *args, **kwargs)
-#def tag_john_view(request, *args, **kwargs):
-#    articles = []
-#    return pagination(request, 'tag.html', articles, 'articles', 10, *args, **kwargs)
 
 
 def answer_view(request, article_id, *args, **kwargs):
-    article = Question.objects.get(id=article_id)
     kwargs['tags'] = Tag.objects.get_count_iniq()
     kwargs['top_people'] = LikeDislike.objects.get_top_people()
+    article = Question.objects.get(id=article_id)
     if request.POST:
         form = forms.AnswerAddForm(request.user, request.POST)
+        user = Profile.objects.get(id=request.user.id)
         if form.is_valid():
-            return redirect(form.save(article).get_url())
+            return redirect(form.save(article, user).get_url())
     else:
         form = forms.AnswerAddForm()
     answers = article.answer_set.all()
@@ -121,18 +119,33 @@ def ask_view(request, *args, **kwargs):
     kwargs['top_people'] = LikeDislike.objects.get_top_people()
     if request.POST:
         form = forms.ArticleAddForm(request.user, request.POST)
+        user = Profile.objects.get(id=request.user.id)
         if form.is_valid():
-            return redirect(form.save().get_url())
+            return redirect(form.save(user).get_url())
     else:
         form = forms.ArticleAddForm()
     return ask_view_render(request, form=form, *args, **kwargs)
 
+def settings_view_render(request, *args, **kwargs):
+    return render(request, 'settings.html', kwargs)
 
 @login_required
 def settings_view(request, *args, **kwargs):
     kwargs['tags'] = Tag.objects.get_count_iniq()
     kwargs['top_people'] = LikeDislike.objects.get_top_people()
-    return render(request, 'settings.html', kwargs)
+
+    if request.POST:
+        form = forms.SettingsForm(request.user, request.POST)
+        if form.is_valid():
+            users = Profile.objects.get(id=request.user.id)
+            users.user.password = request.POST.get("password")
+            users.user.email = request.POST.get("email")
+            users.user.username = request.POST.get("login")
+            users.user.save()
+            return redirect('/')
+    else:
+        form = forms.SettingsForm()
+    return settings_view_render(request, form=form, *args, **kwargs)
 
 
 def pagination(request, html_page, objects, object_name, objects_count, *args, **kwargs):
@@ -184,6 +197,19 @@ class VotesView(View):
             content_type="application/json"
         )
 
+
+def e_handler404(request):
+    #context = RequestContext(request)
+    response = render_to_response('error404.html')
+    response.status_code = 404
+    return response
+
+
+def e_handler500(request):
+    #context = RequestContext(request)
+    response = render_to_response('error500.html')
+    response.status_code = 500
+    return response
 '''
 def pagination(request, objects, object_name, objects_count, *args, **kwargs):
     paginator = Paginator(objects, objects_count)

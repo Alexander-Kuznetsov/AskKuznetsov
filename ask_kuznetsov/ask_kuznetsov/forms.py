@@ -17,10 +17,6 @@ class SearchForm(forms.Form):
         })
     )
 
-    #def save(self):
-    #    return self.cleaned_data['search_word']
-
-
 
 class ArticleAddForm(forms.Form):
     title = forms.CharField(
@@ -45,7 +41,7 @@ class ArticleAddForm(forms.Form):
     )
     tags = forms.CharField(
         label='Tags',
-        required=False,
+        required=True,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Input tags here...'
@@ -103,13 +99,13 @@ class AnswerAddForm(forms.Form):
         self._user = user
         forms.Form.__init__(self, *args, **kwargs)
 
-    def save(self, article):
+    def save(self, article, user):
         answer = Answer()
         answer.text = self.cleaned_data['text']
         answer.created_at = datetime.datetime.now()
         answer.rating_like = 0
         answer.rating_dislike = 0
-        answer.author = Profile.objects.all()[1]
+        answer.author = user
         answer.question = article
         answer.save()
 
@@ -205,6 +201,7 @@ class SignInForm(forms.Form):
             self.clean()
         return self._user
 
+
 class SettingsForm(forms.Form):
     login = forms.CharField(
         min_length=3,
@@ -225,12 +222,24 @@ class SettingsForm(forms.Form):
             'placeholder': 'pupkin@mail.ru'
         })
     )
-    name = forms.CharField(
-        min_length=3,
+    password = forms.CharField(
+        min_length=4,
         max_length=20,
-        label='Name:',
-        widget=forms.TextInput(attrs={
+        label='Password:',
+        widget=forms.PasswordInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Pupkin'
+            'placeholder': '***********'
         })
     )
+
+    def __init__(self, user=None, *args, **kwargs):
+        self._user = user
+        forms.Form.__init__(self, *args, **kwargs)
+
+    def save(self, user):
+        user.login = self.cleaned_data['login']
+        user.email = self.cleaned_data['email']
+        user.password = self.cleaned_data['password']
+        user.save()
+
+        return user
