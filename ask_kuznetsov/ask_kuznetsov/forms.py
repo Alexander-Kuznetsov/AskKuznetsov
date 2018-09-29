@@ -237,9 +237,13 @@ class SettingsForm(forms.Form):
         forms.Form.__init__(self, *args, **kwargs)
 
     def save(self, user):
-        user.login = self.cleaned_data['login']
+        #User.objects.update(login=self.cleaned_data['login'], email=self.cleaned_data['email'],
+        #                         password=self.cleaned_data['password'])
+
+        user.username = self.cleaned_data['login']
         user.email = self.cleaned_data['email']
-        user.password = self.cleaned_data['password']
+        print(self.cleaned_data['password'])
+        user.set_password(self.cleaned_data['password'])
         user.save()
 
         return user

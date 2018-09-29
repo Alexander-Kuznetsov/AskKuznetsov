@@ -5,6 +5,14 @@ from django.contrib.auth.hashers import make_password
 from ask_kuznetsov.models import Profile
 
 from django.core.files import File
+from random import choice
+
+username = '2freeWwjd 4meYourGirl Airtiumen Allycenton Amorphon Anicware Aracrossent Asonican Auxillwor'
+'Bootypersto BugsAware Chilotes Chonexpiryi ChooseNeat Citadmarl Comgewo DarkSlipk DasMidnight'
+'Delivivi Discoverda DoggXcaptain DravenHemp Dressyhose Ephornet Esollaur Exterstp Extrammun'
+'Feodata Figgird'
+
+username = username.split(' ')
 
 class Command(BaseCommand):
   help = 'creates fake users'
@@ -17,10 +25,12 @@ class Command(BaseCommand):
     for i in range(0, count):
       user = User()
       user.save()
-      user.username = 'Bot_' + str(user.id)
-      user.first_name = 'Testbot_' + str(user.id % 19)
-      user.last_name = 'Fakeuser_' + str(user.id % 23)
-      user.email = 'botmail_' + str(user.id) + '@mail.ru'
+
+      user.username = choice(username) + str(user.id)
+      print(user.username)
+      user.first_name = choice(username) + str(user.id)
+      user.last_name = choice(username) + str(user.id)
+      user.email = choice(username) + str(user.id) + '@mail.ru'
       user.password = make_password('Imabot')
       user.is_active = True
       user.is_superuser = False

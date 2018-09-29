@@ -118,6 +118,15 @@ class LikeDislikeManager(models.Manager):
 		top_people = self.likes().values('user_id').annotate(count=Count('user_id')).order_by('-count')
 		return [User.objects.get(id=top_man['user_id']) for top_man in top_people]
 
+	#def get_top_people(self):
+	#		top_people = self.likes()\
+	#		.filter(content_type_id=9)\
+	#		.values('object_id')\
+	#		.annotate(count=Count('object_id'))\
+	#		.order_by('-count')
+	#	top_people = [Question.objects.get(id=top_man['object_id']) for top_man in top_people]
+	#	return [User.objects.get(id=top_man['user_id']) for top_man in top_people]
+
 
 class LikeDislike(models.Model):
 	LIKE = 1
@@ -160,6 +169,9 @@ class Question(models.Model):
 
 	def __unicode__(self):
 		return u'{0} - {1}'.format(self.id, self.title)
+
+	def __getitem__(self, key):
+		return self.title[key]
 
 	def get_count_answers(self):
 		return Answer.objects.filter(question_id=self.id).count()

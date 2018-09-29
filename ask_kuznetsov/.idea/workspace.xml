@@ -18,9 +18,9 @@
           <entry key="project.closed" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.6" value="3" />
           <entry key="project.open.time.7" value="3" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -28,7 +28,7 @@
           <entry key="css" value="4" />
           <entry key="html" value="227" />
           <entry key="js" value="12" />
-          <entry key="py" value="124" />
+          <entry key="py" value="129" />
           <entry key="sqlite3" value="1" />
         </counts>
       </usages-collector>
@@ -37,7 +37,7 @@
           <entry key="CSS" value="4" />
           <entry key="HTML" value="227" />
           <entry key="JavaScript" value="12" />
-          <entry key="Python" value="124" />
+          <entry key="Python" value="129" />
           <entry key="SQL" value="1" />
         </counts>
       </usages-collector>
@@ -46,7 +46,7 @@
           <entry key="css" value="54" />
           <entry key="html" value="2920" />
           <entry key="js" value="46" />
-          <entry key="py" value="9903" />
+          <entry key="py" value="11037" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -54,7 +54,7 @@
           <entry key="CSS" value="54" />
           <entry key="HTML" value="2920" />
           <entry key="JavaScript" value="46" />
-          <entry key="Python" value="9903" />
+          <entry key="Python" value="11037" />
         </counts>
       </usages-collector>
     </session>
@@ -64,34 +64,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ask_kuznetsov/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1548">
-              <caret line="143" column="38" selection-start-line="143" selection-start-column="31" selection-end-line="143" selection-end-column="38" />
+            <state relative-caret-position="239">
+              <caret line="117" column="49" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
+                <marker date="1538216909465" expanded="true" signature="2928:2930" ph="..." />
+                <marker date="1538216909465" expanded="true" signature="3104:3105" ph="..." />
+                <marker date="1538216909465" expanded="true" signature="3104:3106" ph="..." />
+                <marker date="1538216909465" expanded="true" signature="3132:3137" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ask_kuznetsov/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="139" column="59" selection-start-line="139" selection-start-column="59" selection-end-line="139" selection-end-column="59" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-                <marker date="1538211171562" expanded="true" signature="752:755" ph="..." />
-                <marker date="1538211171562" expanded="true" signature="4617:4671" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -99,17 +80,45 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ask_kuznetsov/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-928">
+            <state relative-caret-position="18">
               <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Modules/article.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ask_kuznetsov/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+            <state relative-caret-position="241">
+              <caret line="121" column="55" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+                <marker date="1538220153294" expanded="true" signature="752:755" ph="..." />
+                <marker date="1538220153294" expanded="true" signature="4621:4675" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ask_kuznetsov/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#230#239#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ask_kuznetsov/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -117,22 +126,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ask_kuznetsov/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="242" column="12" selection-start-line="242" selection-start-column="8" selection-end-line="242" selection-end-column="12" />
+            <state relative-caret-position="2168">
+              <caret line="242" column="21" selection-start-line="242" selection-start-column="21" selection-end-line="242" selection-end-column="21" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
-                <marker date="1538209858242" expanded="true" signature="213:449" ph="..." />
-                <marker date="1538209858242" expanded="true" signature="482:487" ph="..." />
+                <marker date="1538219945232" expanded="true" signature="213:449" ph="..." />
+                <marker date="1538219945232" expanded="true" signature="482:487" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_questions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="72">
+              <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_tags.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
               </folding>
@@ -143,8 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_users.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+            <state relative-caret-position="54">
+              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
               </folding>
@@ -155,17 +173,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_answers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="11" selection-start-column="5" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Modules/settings_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+            <state relative-caret-position="594">
+              <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#65#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -187,6 +199,11 @@
       <find>count</find>
       <find>save</find>
       <find>get</find>
+      <find>best_</find>
+      <find>best</find>
+      <find>id</find>
+      <find>-2</find>
+      <find>request.user</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -215,9 +232,13 @@
         <option value="$PROJECT_DIR$/templates/500.html" />
         <option value="$PROJECT_DIR$/templates/error500.html" />
         <option value="$PROJECT_DIR$/ask_kuznetsov/urls.py" />
-        <option value="$PROJECT_DIR$/ask_kuznetsov/models.py" />
         <option value="$PROJECT_DIR$/ask_kuznetsov/settings.py" />
         <option value="$PROJECT_DIR$/templates/Modules/settings_form.html" />
+        <option value="$PROJECT_DIR$/ask_kuznetsov/management/commands/add_questions.py" />
+        <option value="$PROJECT_DIR$/ask_kuznetsov/management/commands/add_answers.py" />
+        <option value="$PROJECT_DIR$/ask_kuznetsov/management/commands/add_users.py" />
+        <option value="$PROJECT_DIR$/ask_kuznetsov/management/commands/add_tags.py" />
+        <option value="$PROJECT_DIR$/ask_kuznetsov/models.py" />
         <option value="$PROJECT_DIR$/ask_kuznetsov/forms.py" />
         <option value="$PROJECT_DIR$/ask_kuznetsov/views.py" />
       </list>
@@ -225,7 +246,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="94" />
-    <option name="y" value="-18" />
+    <option name="y" value="1062" />
     <option name="width" value="1678" />
     <option name="height" value="924" />
   </component>
@@ -364,9 +385,6 @@
     <entry file="file://$PROJECT_DIR$/ask_kuznetsov/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_tags.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/clear_db.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -422,10 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-          <folding>
-            <element signature="e#263#270#0" expanded="true" />
-            <element signature="e#292#299#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -510,9 +524,6 @@
     <entry file="file://$PROJECT_DIR$/templates/ask.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Modules/ask_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -544,32 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="40" column="17" lean-forward="true" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#230#239#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-928">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Modules/settings_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
@@ -591,63 +576,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/views.py">
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_questions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="139" column="59" selection-start-line="139" selection-start-column="59" selection-end-line="139" selection-end-column="59" />
+        <state relative-caret-position="72">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
-            <marker date="1538211171562" expanded="true" signature="752:755" ph="..." />
-            <marker date="1538211171562" expanded="true" signature="4617:4671" ph="..." />
+            <element signature="e#0#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/models.py">
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_users.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1548">
-          <caret line="143" column="38" selection-start-line="143" selection-start-column="31" selection-end-line="143" selection-end-column="38" />
+        <state relative-caret-position="54">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="242" column="12" selection-start-line="242" selection-start-column="8" selection-end-line="242" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <marker date="1538209858242" expanded="true" signature="213:449" ph="..." />
-            <marker date="1538209858242" expanded="true" signature="482:487" ph="..." />
+            <element signature="e#0#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_answers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="594">
+          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
           <folding>
             <element signature="e#0#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/management/commands/add_questions.py">
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state>
           <folding>
-            <element signature="e#0#65#0" expanded="true" />
+            <element signature="e#230#239#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="117" column="49" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <marker date="1538216909465" expanded="true" signature="2928:2930" ph="..." />
+            <marker date="1538216909465" expanded="true" signature="3104:3105" ph="..." />
+            <marker date="1538216909465" expanded="true" signature="3104:3106" ph="..." />
+            <marker date="1538216909465" expanded="true" signature="3132:3137" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2168">
+          <caret line="242" column="21" selection-start-line="242" selection-start-column="21" selection-end-line="242" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1538219945232" expanded="true" signature="213:449" ph="..." />
+            <marker date="1538219945232" expanded="true" signature="482:487" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="121" column="55" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+            <marker date="1538220153294" expanded="true" signature="752:755" ph="..." />
+            <marker date="1538220153294" expanded="true" signature="4621:4675" ph="..." />
           </folding>
         </state>
       </provider>

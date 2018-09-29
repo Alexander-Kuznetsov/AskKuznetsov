@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 from ask_kuznetsov.models import Tag
 
+
 class Command(BaseCommand):
   help = 'creates tags'
 
@@ -11,6 +12,7 @@ class Command(BaseCommand):
   def handle(self, *args, **options):
     count = int(options['count'])
     for i in range(0, count):
+
       tag = Tag()
       tag.save()
       tag.name = 'Faketag_' + str(i % 23)
