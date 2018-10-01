@@ -42,7 +42,9 @@ def search_view(request, *args, **kwargs):
         form = forms.SearchForm(request.GET)
         if form.is_valid():
             word = form.cleaned_data['search_word']
+            print(word)
             articles = Question.objects.search_word(word)
+            print(articles)
             if articles:
                 kwargs['search_word'] = {'word': word, 'count': articles.count()}
                 kwargs['tags'] = Tag.objects.get_count_iniq()

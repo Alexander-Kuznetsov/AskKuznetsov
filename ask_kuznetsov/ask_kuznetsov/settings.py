@@ -57,7 +57,7 @@ ROOT_URLCONF = 'ask_kuznetsov.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/bubliks/git-repos/AskKuznetsov/ask_kuznetsov/templates', '/home/bubliks/git-repos/AskKuznetsov/ask_kuznetsov/templates'],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

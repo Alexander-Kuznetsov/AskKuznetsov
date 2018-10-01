@@ -4,6 +4,7 @@ body {
 }
 #wrap {
   min-height: 100%;
+  min-width: 320px;
 }
 main {
   padding-bottom: 50px;
@@ -17,13 +18,36 @@ footer {
   /*Высота футера*/
 }
 
+/* HEADER */
 .logo{
-  width: 50%;
+  width: 50px;
+  height: 50px;
 }
 
+/* Поиск */
+.navbar-left1{
+  position: relative;
+  top: 2px;
+  left: 30px;
+}
+
+
+/* Поиск */
+.navbar-left{
+  position: relative;
+  left: 5%;
+}
+
+/* Поиск */
+.navbar-leftASK{
+  position: relative;
+  top: 0px;
+  left: -240px;
+}
+/*
 .navbar-header{
   width: 10%;
-}
+}*/
 
 .line{
   display: inline;
@@ -78,19 +102,7 @@ footer {
   width: 40%
 }
 
-/* Поиск */
-.navbar-left{
-  position: relative;
-  top: 2px;
-  left: 30px;
-}
 
-/* Поиск */
-.navbar-leftASK{
-  position: relative;
-  top: 0px;
-  left: -240px;
-}
 
 .position-checkbox{
   position: relative;
@@ -124,11 +136,22 @@ footer {
   overflow: hidden;
 }
 
+
+/* ВОПРОСЫ */
 /* Колчество ответов на вопрос в списке всех вопросов*/
-.count-ansver{
+.count-answer{
   position: relative;
-  left:100px;
+  left:15%;
 }
+
+
+/* Тег вопросов*/
+.tags-message{
+  position: relative;
+  left:30%;
+}
+
+
 
 .hotquest{
   font-size: 14px; 
@@ -136,11 +159,6 @@ footer {
 }
 
 
-/* Тег вопросов*/
-.tags-massage{
-  position: relative;
-  left:200px;
-}
 
 
 
