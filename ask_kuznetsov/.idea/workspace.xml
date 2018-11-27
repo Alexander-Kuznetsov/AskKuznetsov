@@ -67,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ask_kuznetsov/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="26">
@@ -76,7 +76,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
@@ -205,7 +205,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="94" />
-    <option name="y" value="1062" />
+    <option name="y" value="-18" />
     <option name="width" value="1678" />
     <option name="height" value="924" />
   </component>
@@ -305,7 +305,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="94" y="1062" width="1678" height="924" extended-state="0" />
+    <frame x="94" y="-18" width="1678" height="924" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -608,10 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/style.css">
+    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" selection-start-line="4" selection-end-line="7" selection-end-column="1" />
+        <state relative-caret-position="26">
+          <caret line="59" column="44" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -622,10 +622,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ask_kuznetsov/settings.py">
+    <entry file="file://$PROJECT_DIR$/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="59" column="44" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
+        <state relative-caret-position="72">
+          <caret line="4" selection-start-line="4" selection-end-line="7" selection-end-column="1" />
         </state>
       </provider>
     </entry>
