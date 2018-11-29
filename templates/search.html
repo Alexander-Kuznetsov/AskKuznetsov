@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="/static/js/like_dislike.js"></script>
+<div class="col-md-8">
+	<h1> Result search:  </h1>
+	<h4> Word: &laquo;{{ search_word.word }}&raquo; found &laquo;{{ search_word.count }}&raquo; posts:</h4>
+	{% include "Modules/article_list.html" %}
+	{% include "Modules/paginator.html" %}
+</div>
+{% endblock %}

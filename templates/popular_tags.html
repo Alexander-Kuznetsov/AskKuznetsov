@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="col-md-8">
+	<h1> Questions with popular tags  </h1>
+	{% include "Modules/article_list.html" %}
+	{% include "Modules/paginator.html" %}
+</div>
+{% endblock %}

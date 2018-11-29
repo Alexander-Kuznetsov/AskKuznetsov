@@ -1,0 +1,38 @@
+<!-- One article -->
+
+<div class="panel panel-default article-container">
+	<div class="article-container-img">
+		<img src="{{ article.get_author_avatar }}">
+	</div>
+	<div class="article-container-title">
+		<h3><a href="{{ article.get_url }}">{{ article.title }}</a></h3>
+	</div>
+	<div class="article-container-text">
+		<p>{{ article.text }}</p>
+	</div>
+	<div class="article-container-like">
+		<button data-id="{{ article.id }}" data-type="article" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			<span data-count="like">{{ article.get_count_likes }}</span>
+		</button>
+	</div>
+	<div class="article-container-dislike">
+		<button data-id="{{ article.id }}" data-type="article" data-action="dislike" title="dislike" type="button" class="btn btn-default" aria-label="Left Align">
+			<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+			<span data-count="dislike">{{ article.get_count_dislikes }}</span>
+		</button>
+	</div>
+	<div class="article-container-author">
+		<span>{{ article.get_author_username }}</span>
+	</div>
+	<div class="article-container-answers">
+		<span class="count-answers"><a>Answer {{ article.get_count_answers }}</a></span>
+	</div>
+	<div class="article-container-tags">
+		<p>Tags:
+			{% for tag in article.tags.all %}
+				<a>{{ tag.title }}</a>
+			{% endfor %}
+		</p>
+	</div>
+</div>
