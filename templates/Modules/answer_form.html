@@ -1,5 +1,41 @@
-<!-- Левая колонка -->
+<!-- main (left column) -->
+
 <div class="col-md-8">
+    <div class="open-article-container">
+        <div class="open-article-container-img">
+            <img src="{{ article.get_author_avatar }}">
+        </div>
+        <div class="open-article-container-title">
+            <h3>{{ article.title }}</h3>
+        </div>
+        <div class="open-article-container-text">
+            <p>{{ article.text }}</p>
+        </div>
+        <div class="open-article-container-like">
+            <button data-id="{{ article.id }}" data-type="article" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                <span data-count="like">{{ article.get_count_likes }}</span>
+            </button>
+        </div>
+        <div class="open-article-container-dislike">
+            <button data-id="{{ article.id }}" data-type="article" data-action="dislike" title="dislike" type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                <span data-count="dislike">{{ article.get_count_dislikes }}</span>
+            </button>
+        </div>
+        <div class="open-article-container-author">
+            <span>{{ article.get_author_username }}</span>
+        </div>
+        <div class="open-article-container-tags">
+            <p>Tags:
+                {% for tag in article.tags.all %}
+                    <a>{{ tag.title }}</a>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+
+
     <div class="panel-body">
         <img class="avatar-post-answer" align="left"  src="{{ article.get_author_avatar }}">
         <h3 class="absolute-top">{{ article.title }}</h3>
@@ -24,34 +60,47 @@
         </span>
     </div>
     <hr>
+
     {% for answer in answers %}
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <img class="avatar-post" align="left"  src="{{ answer.get_author_avatar }}">
-                <p class="text-post">{{ answer.text }}</p>
+        <div class="panel panel-default answer-container">
+            <div class="answer-container-img">
+                <img src="{{ answer.get_author_avatar }}">
             </div>
-            <div class="panel-body">
-                <span>
-                    <button data-id="{{ answer.id }}" data-type="answer" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                        <span data-count="like">{{ answer.get_count_likes }}</span>
-                    </button>
-                    <button data-id="{{ answer.id }}" data-type="answer" data-action="dislike" title="dislike" type="button" class="btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                        <span data-count="dislike">{{ answer.get_count_dislikes }}</span>
-                    </button>
-                </span>
-                {% if user.is_authenticated %}
-                <span class="checkbox box position-checkbox">
-                    <label>
-                        <input type="checkbox"> Correct!
-                    </label>
-                </span>
-                {% endif %}
+            <div class="answer-container-text">
+                <p>{{ answer.text }}</p>
+            </div>
+            <div class="answer-container-like">
+                <button data-id="{{ answer.id }}" data-type="answer" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <span data-count="like">{{ answer.get_count_likes }}</span>
+                </button>
+            </div>
+            <div class="answer-container-dislike">
+                <button data-id="{{ answer.id }}" data-type="answer" data-action="dislike" title="dislike" type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    <span data-count="dislike">{{ answer.get_count_dislikes }}</span>
+                </button>
+            </div>
+            <div class="answer-container-author">
+                <span>{{ answer.get_author_username }}</span>
             </div>
         </div>
+
+        <!--
+        {% if user.is_authenticated %}
+            <span class="checkbox box position-checkbox">
+                <label>
+                    <input type="checkbox"> Correct!
+                </label>
+            </span>
+        {% endif %}
+        -->
     {% endfor %}
-    {% include "Modules/paginator.html" %}
+
+    {% if pagination_list.has_next or pagination_list.has_previous %}
+        {% include "Modules/paginator.html" %}
+    {% endif %}
+
     {% if user.is_authenticated %}
         <hr>
         <form method="post" action="{{ article.get_url }}">

@@ -1,9 +1,7 @@
-<!-- Левая колонка -->
+<!-- main (left column) -->
 
 <div class="col-md-8">
     <h3><b>Settings: {{ user.username }} </b></h3>
-    <!--<form class="form-horizontal" method="post" action="{% url 'settings' %}">
-		{% csrf_token %}-->
 	<form method="post" action="{% url 'settings' %}" class="form-horizontal">
 		{% csrf_token %}
 		{% for field in form %}
@@ -17,24 +15,6 @@
 				{% endfor %}
             </div>
         {% endfor %}
-
-		    <!--<label for="inputLogin" class="col-xs-2 control-label">Login:</label>
-		    <div class="col-xs-10">
-		      	<input type="text" class="form-control" id="inputLogin" placeholder="Pupkin">
-		    </div>-->
-
-		<!--<div class="form-group">
-		    <label for="inputEmail" class="col-xs-2 control-label">Email:</label>
-		    <div class="col-xs-10">
-		      	<input type="email" class="form-control" id="inputEmail" placeholder="pupkin@mail.ru">
-		    </div>
-		</div>
-		<div class="form-group">
-		    <label for="inputNickName" class="col-xs-2 control-label">Name:</label>
-		    <div class="col-xs-10">
-		      		<input type="text" class="form-control" id="inputNickName" placeholder="SuperPupkin">
-		    </div>
-		</div>-->
 		<div class="form-group">
 		    <label for="inputAvatarImg" class="col-xs-2 control-label">Upload Avatar:</label>
 		    <div class="col-xs-10">
