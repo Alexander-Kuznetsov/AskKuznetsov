@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models	
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db.models import Count, Sum, F
@@ -185,10 +185,12 @@ class Question(models.Model):
 		return LikeDislike.objects.dislikes().values('object_id').filter(object_id=self.id).count()
 
 	def get_author_avatar(self):
-		return Profile.objects.get(id=self.id).avatar.url
+		print(Profile.objects.get(id=self.author_id).avatar.url)
+		return Profile.objects.get(id=self.author_id).avatar.url
 
 	def get_author_username(self):
-		return Profile.objects.get(id=self.id).user.username
+		print(Profile.objects.get(id=self.author_id).user.username)
+		return Profile.objects.get(id=self.author_id).user.username
 
 
 class Answer(models.Model):
@@ -213,10 +215,10 @@ class Answer(models.Model):
 		return LikeDislike.objects.dislikes().values('object_id').filter(object_id=self.id).count()
 
 	def get_author_avatar(self):
-		return Profile.objects.get(id=self.id).avatar.url
+		return Profile.objects.get(id=self.author_id).avatar.url
 
 	def get_author_username(self):
-		return Profile.objects.get(id=self.id).user.username
+		return Profile.objects.get(id=self.author_id).user.username
 
 
 

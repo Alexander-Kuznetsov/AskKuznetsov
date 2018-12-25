@@ -34,31 +34,6 @@
             </p>
         </div>
     </div>
-
-
-    <div class="panel-body">
-        <img class="avatar-post-answer" align="left"  src="{{ article.get_author_avatar }}">
-        <h3 class="absolute-top">{{ article.title }}</h3>
-        <p class="text-post">{{ article.text }}</p>
-    </div>
-    <div class="panel-body">
-        <span class="toRight-like-dislike-post-answer">
-            <button data-id="{{ article.id }}" data-type="article" data-action="like" title="like" type="button" class="btn btn-default" aria-label="Left Align">
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                <span data-count="like">{{ article.get_count_likes }}</span>
-            </button>
-            <button data-id="{{ article.id }}" data-type="article" data-action="dislike" title="dislike" type="button" class="btn btn-default" aria-label="Left Align">
-                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                <span data-count="dislike">{{ article.get_count_dislikes }}</span>
-            </button>
-        </span>
-        <span class="tags-massage">
-            Tags:
-           	{% for tag in article.tags.all %}
-                <a> {{ tag.title }} </a>
-            {% endfor %}
-        </span>
-    </div>
     <hr>
 
     {% for answer in answers %}

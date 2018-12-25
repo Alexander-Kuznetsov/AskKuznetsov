@@ -64,7 +64,7 @@ def answer_view(request, article_id, *args, **kwargs):
     article = Question.objects.get(id=article_id)
     if request.POST:
         form = forms.AnswerAddForm(request.user, request.POST)
-        user = Profile.objects.get(id=request.user.id)
+        user = Profile.objects.get(id=request.user.id - 1)
         if form.is_valid():
             return redirect(form.save(article, user).get_url())
     else:
@@ -139,7 +139,7 @@ def ask_view(request, *args, **kwargs):
     kwargs['top_people'] = LikeDislike.objects.get_top_people()
     if request.POST:
         form = forms.ArticleAddForm(request.user, request.POST)
-        user = Profile.objects.get(id=request.user.id)
+        user = Profile.objects.get(id=request.user.id - 1)
         if form.is_valid():
             return redirect(form.save(user).get_url())
     else:
@@ -157,7 +157,7 @@ def settings_view(request, *args, **kwargs):
     if request.POST:
         form = forms.SettingsForm(request.user, request.POST)
         if form.is_valid():
-            users = Profile.objects.get(id=request.user.id)
+            users = Profile.objects.get(id=request.user.id - 1)
             #users.user.password = request.POST.get("password")
             #users.user.email = request.POST.get("email")
             #users.user.username = request.POST.get("login")

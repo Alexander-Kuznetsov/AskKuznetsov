@@ -116,7 +116,7 @@ class RegistrationForm(forms.Form):
     login = forms.CharField(
         min_length=3,
         max_length=20,
-        label='Login:',
+        label='Login',
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'SuperPupkin'
@@ -126,7 +126,7 @@ class RegistrationForm(forms.Form):
     email = forms.CharField(
         min_length=3,
         max_length=255,
-        label='Email:',
+        label='Email',
         widget=forms.EmailInput(attrs={
             'class': 'form-control',
             'placeholder': 'pupkin@mail.ru'
@@ -135,7 +135,7 @@ class RegistrationForm(forms.Form):
     name = forms.CharField(
         min_length=3,
         max_length=20,
-        label='Name:',
+        label='Name',
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Pupkin'
@@ -144,7 +144,7 @@ class RegistrationForm(forms.Form):
     password = forms.CharField(
         min_length=4,
         max_length=20,
-        label='Password:',
+        label='Password',
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
             'placeholder': '***********'
@@ -153,15 +153,16 @@ class RegistrationForm(forms.Form):
     password_repeat = forms.CharField(
         min_length=4,
         max_length=20,
-        label='Repeat password:',
+        label='Repeat password',
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
             'placeholder': '***********'
         })
     )
 
-    avatar = forms.FileField(label='Avatar:',
-                              required=False
+    avatar = forms.FileField(
+        label='Avatar',
+        required=False
     )
 
     def clean_login(self):
@@ -208,6 +209,8 @@ class RegistrationForm(forms.Form):
 class SignInForm(forms.Form):
     username = forms.CharField(
         label='Username',
+        min_length=3,
+        max_length=20,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Username'
@@ -215,6 +218,8 @@ class SignInForm(forms.Form):
     )
     password = forms.CharField(
         label='Password',
+        min_length=4,
+        max_length=20,
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
             'placeholder': 'Password'
