@@ -1,0 +1,5 @@
+Django
+djangorestframework
+simplejson
+Pillow
+selenium
