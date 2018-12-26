@@ -7,7 +7,7 @@ import sys
 import time
 from selenium import webdriver
 from django.test import TestCase
-
+'''
 class AdminTestCase(LiveServerTestCase):
     def setUp(self):
         self.webdriver = webdriver.Chrome('/home/bubliks/chromedriver')
@@ -265,3 +265,4 @@ class AdminTestCase(LiveServerTestCase):
         self.webdriver.get('%s%s' % (self.live_server_url, "/hot_index"))
         self.webdriver.find_element_by_link_text('New Questions').click()
         self.tearDown()
+'''
